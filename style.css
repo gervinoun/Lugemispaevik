@@ -1,0 +1,43 @@
+.heading {
+    text-align: center;
+    padding-top: 1cm;
+    font-size: xx-large;
+    padding: 10px;
+}
+
+.info {
+    text-align: center;
+}
+
+* {
+    box-sizing: border-box;
+  }
+  
+  .column {
+    float: left;
+    width: 50%;
+    padding: 10px;
+    height: 500px;
+    border: 2px solid black;
+    text-align: center;
+  }
+
+.writing {
+    border: 2px solid black;
+    text-align: center;
+}
+  
+
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+
+
+input {
+    padding: 10px;
+    width: 15cm;
+    margin: 10px;
+}
