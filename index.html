@@ -2,10 +2,11 @@
 <meta charset="UTF-8">
 
 <link rel="stylesheet" href="style.css">
-
+<header>
 <div class="Heading">
     <h1>Lugemispäevik</h1>
 </div>
+</header>
     <body>
 
 <div class="Info">
@@ -16,11 +17,11 @@
     <div class="row">
         <div class="column" style="background-color:#aaa;">
         <h2>Loetud raamatud</h2>
-        <p>....</p>
+        <p id="loetud_raamatud"></p>
         </div>
         <div class="column" style="background-color:#bbb;">
         <h2>Pooleni raamatud</h2>
-        <p>....</p>
+        <p id="lugemata"> </p>
         </div>
     </div>
 
@@ -31,7 +32,7 @@
         <input type="checkbox" id="Loetud"> <br>
         <label for="Loetud"> Lõpuni loetud</label>  <br>
         <div class="lehekulg"> </div>
-        <input type="submit" value="Valmis">
+        <input type="submit" value="submit" id="submit">
     </div>
 
 </body>
