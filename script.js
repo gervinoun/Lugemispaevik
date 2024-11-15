@@ -1,13 +1,15 @@
-const url = "https://kool.krister.ee/chat/Lugemispaevik1"
+
+const url = "https://kool.krister.ee/chat/Lugemispaevik2"
 const username = prompt('Mis su nimi on?')
 const pagenr = document.querySelector(".lehekulg");
+pagenr.innerHTML += '<input placeholder="Lehekülje nr" id="nr"> <br>'
 const title = document.getElementById("pealkiri");
 const author = document.getElementById("autor");
 const kasutajainfo = document.querySelector(".Info")
 const submit = document.getElementById("submit")
+const leht = document.getElementById("nr")
 
 
-pagenr.innerHTML += '<input placeholder="Lehekülje nr"> <br>'
 let checkbox = document.getElementById("Loetud");
 checkbox.addEventListener("change", () => {
     if (checkbox.checked) {
@@ -34,10 +36,13 @@ async function fetchMessages() {
         const pealkiri = item.pealkiri;
         const autor = item.autor;
         const loetud = item.jarjekord
-        if (checkbox.checked) {
-            element.innerHTML += "<p>" + autor + ": " + pealkiri + " Lõpuni loetud </p> <br>";
-        } else {
-            element.innerHTML += "<p>" + autor + ": " + pealkiri + "  " + loetud + "</p> <br>";
+        const kasutaja = item.kasutaja
+        if (kasutaja === username) {
+            if (loetud === "lõpuni") {
+                element.innerHTML += "<p> Autor:" + autor + "<br> Pealkiri:" + pealkiri + "</p> <br>";
+            } else {
+                element2.innerHTML += "<p> Autor:" + autor + "<br> Pealkiri:" + pealkiri + " <br> Lehekülg:" + loetud + "</p> <br>"; 
+            }
         }
     }
 }
@@ -45,16 +50,26 @@ async function fetchMessages() {
 setInterval(fetchMessages, 3000)
 
 submit.addEventListener("click", function (event) {
-    const message = { kasutaja: username, pealkiri: title.value, autor: author.value, jarjekord: pagenr.value };
+    if (checkbox.checked) {
+        const message = { kasutaja: username, pealkiri: title.value, autor: author.value, jarjekord: "lõpuni" };
     fetch(url, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(message),
-    });
 
-  })
+    })} else {
+        const message1 = { kasutaja: username, pealkiri: title.value, autor: author.value, jarjekord: leht.value };
+        fetch(url, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(message1),
+          });
+    }
+});
 
   
 
